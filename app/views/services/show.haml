@@ -1,0 +1,10 @@
+%h1== Logs for #{params[:service]}
+
+%p= link_to "View all posted hooks", root_path
+
+%h2== Last #{@events.count} logged events from hooks
+
+%ul
+  - for event in @events
+    %li
+      %blockquote= event.payload

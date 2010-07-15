@@ -1,0 +1,11 @@
+%h1 Log Hooker
+
+%p Use this app to log webhooks from any application. Simply configure them to post to /log/servicename.
+
+%h2== Last #{@events.count} logged events from hooks
+
+%ul
+  - for event in @events
+    %li
+      %strong= link_to event.service, service_path(event.service)
+      %blockquote= event.payload
