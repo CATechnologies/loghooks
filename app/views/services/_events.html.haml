@@ -1,0 +1,11 @@
+%h2== Last #{@events.count} logged events from hooks
+
+%ul.events
+  - list_of @events do |event|
+    .timestamp
+      - if action_name == 'index'
+        = link_to event.service, service_path(event.service)
+      = event.created_at
+    %pre= pretty_data event
+    - if event.content_type.present?
+      .type= event.content_type
