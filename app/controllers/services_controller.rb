@@ -1,16 +1,18 @@
 class ServicesController < ApplicationController
 
+  skip_before_filter :verify_authenticity_token, :only => :create
+
   def index
-    @events = Event.all :order => 'ID desc', :limit => 10
+    @events = Event.latest.limit(10)
   end
   
   def show
-    @events = Event.where(:service => params[:service]).order('ID desc').limit(50)
+    @events = Event.latest.by_service(params[:service]).limit(20)
   end
   
   def create
-    Event.create :service => params[:service], :payload => request.raw_post
-    render :text => 'ok'
+    Event.create_from_request(params[:service], request)
+    head :ok
   end
 
 end
