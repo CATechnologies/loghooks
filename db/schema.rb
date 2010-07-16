@@ -9,12 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100715162423) do
+ActiveRecord::Schema.define(:version => 20100716121648) do
 
   create_table "events", :force => true do |t|
-    t.string "service"
-    t.text   "add_events"
-    t.text   "payload"
+    t.string   "service"
+    t.text     "add_events"
+    t.text     "payload"
+    t.string   "content_type"
+    t.text     "data"
+    t.datetime "updated_at"
+    t.datetime "created_at"
   end
 
 end

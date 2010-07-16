@@ -7,7 +7,12 @@ class Event < ActiveRecord::Base
   }
   
   def self.create_from_request(service, request)
-    create!(:service => service, :payload => request.raw_post)
+    create! :service => service,
+      :payload => request.raw_post,
+      :content_type => request.content_type,
+      :data => request.request_parameters
   end
+  
+  serialize :data
 
 end
