@@ -6,6 +6,8 @@
       - if action_name == 'index'
         = link_to event.service, service_path(event.service)
       = event.created_at
-    %pre= pretty_data event
+      
+    = highlight_yaml pretty_data event
+    
     - if event.content_type.present?
       .type= event.content_type

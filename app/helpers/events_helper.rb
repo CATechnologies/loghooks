@@ -1,4 +1,5 @@
 require 'yaml'
+require 'uv'
 
 module EventsHelper
   
@@ -18,6 +19,10 @@ module EventsHelper
       output = "# #{comment}\n" + output if comment
       output
     end
+  end
+  
+  def highlight_yaml(yml)
+    Uv.parse(yml, 'xhtml', 'yaml', false, 'dawn').html_safe
   end
   
 end
